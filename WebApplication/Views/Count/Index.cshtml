@@ -1,0 +1,29 @@
+﻿@model WebApplication.Models.CountModel
+@{
+    ViewBag.Title = "Count";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div>
+            @Html.TextBoxFor(x => x.CountValue, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <input id="submit" type="submit" value="Increase" class="btn btn-default"  />
+}
+
+<script type="text/javascript">
+    $("#submit").bind("click", function (e) {
+        var currentVal = $("#CountValue").val();
+        if (currentVal < 10) {
+            if (isNaN(currentVal)) currentVal = new Number();
+            currentVal++;
+            $("#CountValue").val(currentVal).trigger("change");
+        }
+        else {
+            e.preventDefault();
+        }
+    });
+</script>
